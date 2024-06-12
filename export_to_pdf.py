@@ -9,7 +9,7 @@ def export_domains_to_pdf(db_path, table_name, output_file):
     cursor = conn.cursor()
     
     # Executar a consulta para contar os domínios
-    cursor.execute(f"SELECT domain, COUNT(*) AS vezes FROM {table_name} GROUP BY domain")
+    cursor.execute(f"SELECT domain, client, COUNT(*) AS vezes FROM {table_name} WHERE client IN ('192.168.0.190', '192.168.0.104', '192.168.0.100', '127.0.0.1') GROUP BY domain")
     
     # Obter os resultados da consulta
     data = cursor.fetchall()
@@ -21,7 +21,7 @@ def export_domains_to_pdf(db_path, table_name, output_file):
     doc = SimpleDocTemplate(output_file, pagesize=letter)
     
     # Criar uma tabela com os resultados da consulta
-    table_data = [["Domínio", "Quantidade"]]  # Cabeçalho da tabela
+    table_data = [["Domínio", "Cliente", "Quantidade"]]  # Cabeçalho da tabela
     table_data.extend(data)  # Adicionar os dados da consulta
     
     # Estilo da tabela
