@@ -1,7 +1,6 @@
 import sqlite3
 from tabulate import tabulate
 
-MAX_CHARS = 25
 # Função para exportar dados de uma tabela para um arquivo txt
 def export_to_txt(db_path, table_name, output_file):
     # Conectar ao banco de dados SQLite
